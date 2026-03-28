@@ -1,0 +1,18 @@
+# Dépendances (Le dossier le plus lourd à ignorer)
+node_modules/
+package-lock.json
+
+# Configuration IDE (VS Code, etc.)
+.vscode/
+.idea/
+
+# Fichiers temporaires du système
+Thumbs.db
+.DS_Store
+
+# Fichiers de log d'erreurs
+npm-debug.log*
+*.log
+
+# Si vous avez des fichiers de configuration sensibles
+config.php

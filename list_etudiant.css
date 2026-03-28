@@ -1,0 +1,76 @@
+/* Fond de la page (Gris très clair) */
+:root {
+    --dt-btn-bg: #ffffff;
+    --dt-btn-border: #cfd4da;
+    --dt-btn-text: #212529;
+    --dt-btn-hover-bg: #f3f4f6;
+    --dt-btn-active-bg: #3b6998;
+    --dt-btn-active-border: #3b6998;
+    --dt-btn-active-text: #ffffff;
+}
+
+
+body {
+    background-color: #f4f7f6;
+}
+
+/* La barre de navigation */
+.navbar-custom {
+    background-color: #3b6998 !important; /* Ton bleu */
+    padding: 10px 0;
+}
+
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: background 0.2s;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+/* Effet Hover Simple */
+.navbar-custom .nav-link:hover {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Page active */
+.navbar-custom .nav-link.active {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Style Logout */
+.navbar-custom .nav-link.logout {
+    font-weight: bold;
+    color: #ffcccc !important;
+}
+.dt-buttons .btn,
+.dataTables_wrapper .dataTables_paginate .paginate_button .page-link {
+    background-color: var(--dt-btn-bg) !important;
+    border: 1px solid var(--dt-btn-border) !important;
+    color: var(--dt-btn-text) !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+    padding: 0.42rem 0.8rem !important;
+}
+
+.dt-buttons .btn:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button .page-link:hover {
+    background-color: var(--dt-btn-hover-bg) !important;
+    border-color: var(--dt-btn-border) !important;
+    color: var(--dt-btn-text) !important;
+}
+
+.dt-buttons .btn:focus,
+.dt-buttons .btn:active,
+.dataTables_wrapper .dataTables_paginate .paginate_button .page-link:focus {
+    box-shadow: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.active .page-link {
+    background-color: var(--dt-btn-active-bg) !important;
+    border-color: var(--dt-btn-active-border) !important;
+    color: var(--dt-btn-active-text) !important;
+}
