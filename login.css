@@ -1,0 +1,45 @@
+body {
+    background-color: #f4f7f6;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    width: 100%;
+    max-width: 400px;
+}
+.card-header {
+    background-color: #3b6998;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.card-header h2 {
+    font-weight: bold;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+.card-body {
+    padding: 20px;
+}
+.form-control {
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+.btn-primary {
+    background-color: #3b6998;
+    border-color: #3b6998;
+    border-radius: 2px;
+    padding: 8px;
+    font-weight: bold;
+}
+.btn-primary:hover {
+    background-color: #2d5073;
+    border-color: #2d5073;
+}
