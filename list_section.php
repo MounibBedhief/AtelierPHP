@@ -4,15 +4,8 @@ include 'autoloader.php';
 $pdo = ConnexionDB::getInstance();
 
 try {
-  $filiere_filtree=isset($_GET['section_id'])? $_GET['section_id']:null;
-  if($filiere_filtree){
-    $query=$pdo->prepare("SELECT E.*, S.designation AS section_nom FROM etudiant E JOIN section S ON E.section_id = S.id WHERE S.id=?");
-    $query->execute([$filiere_filtree]);
-  } else {
-    $query = $pdo->prepare("SELECT E.*, S.designation AS section_nom FROM etudiant E JOIN section S ON E.section_id = S.id");
-    $query->execute();
-  }
-  $etudiants = $query->fetchAll();
+  $query = $pdo->query("SELECT * from section");
+  $sections = $query->fetchAll();
 } catch (Exception $e) {
   die("Erreur SQL : " . $e->getMessage());
 }
@@ -22,7 +15,7 @@ try {
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Management System</title>
 
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -52,44 +45,28 @@ try {
 
   <div class="container mt-4">
     <div class="p-2 mb-3 bg-light border rounded">
-      <h3 class="text-muted m-0" style="font-size: 1.2rem;">Liste des étudiants</h3>
+      <h3 class="text-muted m-0" style="font-size: 1.2rem;">Liste des sections</h3>
     </div>
 
-    <div class="d-flex align-items-center mb-3">
-      <input type="text" id="customSearch" class="form-control w-25 me-2" placeholder="Veuillez renseigner votre...">
-      <button id="btnFiltrer" class="btn btn-danger me-2">Filtrer</button>
-      <a href="add_etudiant.php" class="text-primary fs-3"><i class="fas fa-user-plus"></i></a>
-    </div>
-
-    <table id="tableEtudiants" class="table table-striped border">
+    <table id="tableSections" class="table table-striped border">
       <thead>
         <tr>
           <th>id</th>
-          <th>image</th>
-          <th>name</th>
-          <th>birthday</th>
-          <th>section</th>
+          <th>designation</th>
+          <th>description</th>
           <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($etudiants as $etudiant) : ?>
+        <?php foreach ($sections as $section) : ?>
           <tr>
-            <td><?php echo htmlspecialchars($etudiant['id']); ?></td>
-            <td><img src="uploads/<?php echo htmlspecialchars($etudiant['image']); ?>" alt="avatar" class="rounded-circle" width="40" height="40" alt="Student"></td>
-            <td><?php echo htmlspecialchars($etudiant['nom']); ?></td>
-            <td><?php echo htmlspecialchars($etudiant['date_naissance']); ?></td>
-            <td><?php echo htmlspecialchars($etudiant['section_nom']); ?></td>
+            <td><?php echo htmlspecialchars($section['id']); ?></td>
+            <td><?php echo htmlspecialchars($section['designation']); ?></td>
+            <td><?php echo htmlspecialchars($section['description']); ?></td>
             <td class="text-center">
-              <a href="view_etudiant.php?id=<?php echo htmlspecialchars($etudiant['id']); ?>" class="text-info me-2">
-                <i class="fas fa-info-circle fa-lg"></i>
-              </a>
-              <a href="delete_etudiant.php?id=<?php echo htmlspecialchars($etudiant['id']); ?>" class="text-primary me-2" onclick="return confirm('Supprimer ?');">
-                <i class="fas fa-eraser fa-lg"></i>
-              </a>
-              <a href="edit_etudiant.php?id=<?php echo htmlspecialchars($etudiant['id']); ?>" class="text-primary">
-                <i class="fas fa-edit fa-lg"></i>
-              </a>
+              <a href="list_etudiant.php?section_id=<?php echo $section['id']; ?>" class="text-primary">
+    <i class="fa-solid fa-list-ol"></i>
+</a>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -114,7 +91,7 @@ try {
   <script>
     $(document).ready(function() {
       if ($.fn.DataTable) {
-        var table = $('#tableEtudiants').DataTable({
+        var table = $('#tableSections').DataTable({
           dom: 'Brtip',
           pageLength: 5,
           lengthChange: false,

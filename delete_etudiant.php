@@ -31,6 +31,8 @@ if ($etudiant) {
     // Supprimer l'étudiant de la base
     $stmt = $pdo->prepare("DELETE FROM etudiant WHERE id = ?");
     $stmt->execute([$id]);
+    $stmt = $pdo->prepare("ALTER TABLE etudiant AUTO_INCREMENT = 1");
+    $stmt->execute();
 }
 
 // Rediriger vers la liste mise à jour
